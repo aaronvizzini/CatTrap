@@ -2,34 +2,34 @@
 //  CTElement.m
 //  Cat Trap 2
 //
-//  Created by Aaron Vizzini on 4/9/11.
-//  Copyright 2011 Home. All rights reserved.
+//  Created by Aaron Vizzini on 4/21/11.
+//  Copyright 2011 Alternative Visuals. All rights reserved.
 //
 
 #import "CTElement.h"
-#import "CTSprite.h"
+
 
 @implementation CTElement
-@synthesize elementType;
 
-- (id)init
+#pragma mark -
+#pragma mark Init Method
+
+- (id)initWithOwningGrid:(CTGridManager *)theGrid
 {
-    self = [super init];
+    self = [super initWithOwningGrid:theGrid];
     if (self) {
-        // Initialization code here.
+        
     }
     
     return self;
 }
 
--(bool)pushableInDirection:(CTDirection)direction
-{
-    return YES;
-}
+#pragma mark -
+#pragma mark Overriden Move Method
 
-- (void)dealloc
+-(bool)move:(CTDirection)direction
 {
-    [super dealloc];
+    return NO;
 }
 
 @end

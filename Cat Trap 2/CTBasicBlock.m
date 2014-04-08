@@ -3,7 +3,7 @@
 //  Cat Trap 2
 //
 //  Created by Aaron Vizzini on 4/9/11.
-//  Copyright 2011 Home. All rights reserved.
+//  Copyright 2011 Alternative Visuals. All rights reserved.
 //
 
 #import "CTBasicBlock.h"
@@ -11,66 +11,29 @@
 
 @implementation CTBasicBlock
 
+#pragma mark -
+#pragma mark Init Method
+
 -(id)initWithOwningGrid:(CTGridManager *)theGrid
 {
     self = [super initWithOwningGrid:theGrid];
     if (self) {
-        CCTexture2D *texture = [[CCTextureCache sharedTextureCache] addImage:@"block.png"];
+        CCTexture2D *texture = [[CCTextureCache sharedTextureCache] addImage:@"BlueBlock.png"];
 		CGSize size = texture.contentSize;
 		CGRect rect;
 		rect.size = size;
 		rect.origin = ccp(0,0);
 		[self setTexture:texture];
 		[self setTextureRect:rect];
+        
+        self.spriteType = CTBasicBlockPushable;
     }
     
     return self;
 }
 
--(bool)pushableInDirection:(CTDirection)direction
-{
-    if(![self isWallInDirection:direction] && [self getElementInDirection:direction] == NULL)
-    {
-        [self move:direction];
-        return YES;
-    }
-    
-    else
-    {
-        if(![self isWallInDirection:direction] && [self getElementInDirection:direction] && [[self getElementInDirection:direction]pushableInDirection:direction])
-        {
-            [self move:direction];
-            return YES;
-        }
-        
-        else return NO;
-    }
-}
-
--(bool)move:(CTDirection)direction
-{
-    if(direction == CTNorth)
-    {
-        return [super move:direction];
-    }
-    
-    else if(direction == CTSouth)
-    {
-        return [super move:direction];
-    }
-    
-    else if(direction == CTEast)
-    {
-        return [super move:direction];
-    }
-    
-    else if(direction == CTWest)
-    {
-        return [super move:direction];
-    }
-    
-    return NO;
-}
+#pragma mark -
+#pragma mark clean up
 
 - (void)dealloc
 {

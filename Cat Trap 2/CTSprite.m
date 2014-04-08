@@ -3,52 +3,57 @@
 //  Cat Trap 2
 //
 //  Created by Aaron Vizzini on 4/9/11.
-//  Copyright 2011 Home. All rights reserved.
+//  Copyright 2011 Alternative Visuals. All rights reserved.
 //
 
 #import "CTSprite.h"
 #import "CTBlock.h"
 #import "CTGridManager.h"
-#import "CTElement.h"
+#import "CTPushable.h"
 
 @implementation CTSprite
-@synthesize grid, location;
+@synthesize grid, location, spriteType;
+
+#pragma mark -
+#pragma mark Init Method
 
 - (id)initWithOwningGrid:(CTGridManager *)theGrid
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
         grid = theGrid;
     }
     
     return self;
 }
 
--(CTElement *)getElementInDirection:(CTDirection)direction
+#pragma mark -
+#pragma mark Peripheral Access Methods
+
+-(CTPushable *)getPushableInDirection:(CTDirection)direction
 {
     if(direction == CTNorth)
     {
         CGPoint northPoint = CGPointMake(self.location.x, self.location.y+1);
-        return [grid getElementForLocation:northPoint];
+        return [grid getPushableForLocation:northPoint];
     }
     
     else if(direction == CTSouth)
     {
         CGPoint southPoint = CGPointMake(self.location.x, self.location.y-1);
-        return [grid getElementForLocation:southPoint];
+        return [grid getPushableForLocation:southPoint];
     }
     
     else if(direction == CTEast)
     {
         CGPoint eastPoint = CGPointMake(self.location.x+1, self.location.y);
-        return [grid getElementForLocation:eastPoint];
+        return [grid getPushableForLocation:eastPoint];
     }
     
     else
     {
         CGPoint westPoint = CGPointMake(self.location.x-1, self.location.y);
-        return [grid getElementForLocation:westPoint];
+        return [grid getPushableForLocation:westPoint];
     }
 }
 
@@ -60,6 +65,9 @@
     else if(direction == CTWest && self.location.x-1 == 0)return YES;
     else return NO;
 }
+
+#pragma mark -
+#pragma mark movement method
 
 -(bool)move:(CTDirection)direction
 {
@@ -91,8 +99,11 @@
         return YES;
     }
     
-    return NO;//Subclasses override and define their own move behavior.
+    return NO;
 }
+
+#pragma mark -
+#pragma mark clean up
 
 - (void)dealloc
 {

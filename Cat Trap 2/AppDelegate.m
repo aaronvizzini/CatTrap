@@ -3,7 +3,7 @@
 //  Cat Trap 2
 //
 //  Created by Aaron Vizzini on 4/9/11.
-//  Copyright Home 2011. All rights reserved.
+//  Copyright Alternative Visuals 2011. All rights reserved.
 //
 
 #import "cocos2d.h"
@@ -11,7 +11,11 @@
 #import "AppDelegate.h"
 #import "GameConfig.h"
 #import "RootViewController.h"
-#import "GameplayControllerScene.h"
+
+#import "Intro_Scene.h"
+#import "FileHelper.h"
+#import "SimpleAudioEngine.h"
+#import <GameKit/Gamekit.h>
 
 @implementation AppDelegate
 
@@ -40,6 +44,30 @@
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    if(![fm fileExistsAtPath:[FileHelper getSettingsPath]]) 
+    {
+        NSMutableDictionary *settingsDictionary = [[NSMutableDictionary alloc]init];
+        [settingsDictionary setObject:[NSNumber numberWithFloat:.5f] forKey:@"SFXVolume"];
+        [settingsDictionary setObject:[NSNumber numberWithFloat:.5f] forKey:@"MusicVolume"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"TotalCheese"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"TotalDeaths"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"TotalDistance"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"DeathsByTrap"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"DeathsByCat"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"DeathsByFire"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"TotalTime"];
+        [settingsDictionary setObject:[NSNumber numberWithInt:0] forKey:@"SurvivalScore"];
+        [settingsDictionary setObject:[NSNumber numberWithBool:YES] forKey:@"IsNew"];
+        [settingsDictionary writeToFile:[FileHelper getSettingsPath] atomically:YES];
+        [settingsDictionary release];
+    }
+    
+    NSMutableDictionary *settingsDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[FileHelper getSettingsPath]];
+    
+    [[SimpleAudioEngine sharedEngine]setEffectsVolume:[[settingsDictionary objectForKey:@"SFXVolume"]floatValue]];
+    
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
@@ -47,8 +75,7 @@
 	// if it fails (SDK < 3.1) use the default director
 	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
-	
-	
+    
 	CCDirector *director = [CCDirector sharedDirector];
 	
 	// Init the View Controller
@@ -93,7 +120,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
     [[CCDirector sharedDirector] setProjection:kCCDirectorProjection2D];
 	
 	
@@ -115,7 +142,19 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [GameplayControllerScene node]];
+	[[CCDirector sharedDirector] runWithScene: [Intro_Scene node]];
+    
+    [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+        if(error == nil)
+        {
+            //Good
+        }
+        
+        else
+        {
+            //bad
+        }
+    }];
 }
 
 

@@ -3,8 +3,8 @@
 //  Cat Trap 2
 //
 //  Created by Aaron Vizzini on 4/9/11.
-//  Copyright Home 2011. All rights reserved.
-//
+//  Copyright Alternative Visuals 2011. All rights reserved.
+///
 
 #ifndef __GAME_CONFIG_H
 #define __GAME_CONFIG_H
