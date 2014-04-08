@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Background</key>
+	<integer>1</integer>
+	<key>Data</key>
+	<string>0000000000000000000000000003330000000000104010000010401000011011100011101100001161117271116110000110111000111011000010401000001040100000070001010007000000007000111000700000110200010100020110000070001110007000000007000101000700000010401000001040100001101110001110110000116111727111611000011011100011101100001040100000104010000000000333000000000000000000000000000</string>
+	<key>FirstWaveSize</key>
+	<integer>1</integer>
+	<key>LevelType</key>
+	<integer>1</integer>
+	<key>Name</key>
+	<string>20</string>
+	<key>SuggestedTime</key>
+	<integer>1</integer>
+	<key>Version</key>
+	<real>1</real>
+	<key>WaveCount</key>
+	<integer>11</integer>
+	<key>WaveIncrementIncrease</key>
+	<integer>1</integer>
+	<key>WaveInterval</key>
+	<integer>60</integer>
+	<key>WavesBetweenIncrease</key>
+	<integer>7</integer>
+</dict>
+</plist>

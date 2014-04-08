@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DeathsByCat</key>
+	<integer>17</integer>
+	<key>DeathsByFire</key>
+	<integer>0</integer>
+	<key>DeathsByTrap</key>
+	<integer>0</integer>
+	<key>MusicVolume</key>
+	<real>0.16058394312858582</real>
+	<key>SFXVolume</key>
+	<real>0.4781021773815155</real>
+	<key>TotalCheese</key>
+	<integer>117</integer>
+	<key>TotalDeaths</key>
+	<integer>17</integer>
+	<key>TotalDistance</key>
+	<integer>6339</integer>
+	<key>TotalTime</key>
+	<integer>5632</integer>
+</dict>
+</plist>
